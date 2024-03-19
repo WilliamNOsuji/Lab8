@@ -1,0 +1,163 @@
+<header class="container mt-2">
+  <div class="row justify-content-center align-items-center">
+    <div class="col-auto">
+      <h1>Animaux en liberté</h1>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+
+  <div class="row">
+    <div class="col-3">
+      <div class="row list">
+        <div class="col">
+          <!-- ######################################## -->
+          <!--    Liste de tous les animaux (GET 1)     -->
+          <!-- ######################################## -->
+          <h4>Liste d'animaux<br> (Get All)</h4>
+          <ul>
+            <li *ngFor="let a of animals">{{a.id}} - {{a.name}} - {{a.type}}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="row list">
+        <div class="col">
+          <!-- ######################################## -->
+          <!--      Un seul animal précis (GET 2)       -->
+          <!-- ######################################## -->
+          <h4>Animal (Get One)</h4>
+          <ul *ngIf="animal != undefined">
+            <li>{{animal.id}} - {{animal.name}} - {{animal.type}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-9">
+
+      <!-- ######################################## -->
+      <!-- Requête GET : Récupérer tous les animaux -->
+      <!-- ######################################## -->
+      <div class="row get align-items-center">
+        <div class="col-auto">
+          <button (click)="getAnimals()">GET</button>
+        </div>
+        <div class="col-auto">
+          <table>
+            <tr>
+              <td></td><td><input name="delete_id" type="text" disabled value="Pèse juste su'l'piton bro"></td>
+            </tr>
+          </table>
+        </div>
+        <div class="col">
+          Permet de récupérer la liste de tous les animaux dans la base de données <strong>et les affiche</strong>.
+        </div>
+      </div>
+
+      <!-- ######################################## -->
+      <!--     Requête POST : Ajouter un animal     -->
+      <!-- ######################################## -->
+      <div class="row post align-items-center">
+        <div class="col-auto">
+          <button (click)="postAnimal()">POST</button>
+        </div>
+        <div class="col-auto">
+          <table>
+            <tr>
+              <td>Type : </td><td><input name="post_type" type="text" [(ngModel)]="type"></td>
+            </tr>
+            <tr>
+              <td>Name : </td><td><input name="post_name" type="text" [(ngModel)]="name"></td>
+            </tr>
+          </table>
+        </div>
+        <div class="col">
+          Permet d'ajouter un nouvel animal à la base de données.
+        </div>
+      </div>
+
+      <!-- ######################################## -->
+      <!-- Requête GET : Récupérer un animal précis -->
+      <!-- ######################################## -->
+      <div class="row get align-items-center">
+        <div class="col-auto">
+          <button (click)="getAnimal()">GET</button>
+        </div>
+        <div class="col-auto">
+          <table>
+            <tr>
+              <td>Id : </td><td><input name="get_id" type="number" [(ngModel)]="id"></td>
+            </tr>
+          </table>
+        </div>
+        <div class="col">
+          Permet de récupèrer un animal spécifique dans la base de données <strong>et l'affiche</strong>.
+        </div>
+      </div>
+
+      <!-- ######################################## -->
+      <!-- Requête PUT : Modifier un animal précis  -->
+      <!-- ######################################## -->
+      <div class="row put align-items-center">
+        <div class="col-auto">
+          <button (click)="putAnimal()">PUT</button>
+        </div>
+        <div class="col-auto">
+          <table>
+            <tr>
+              <td>Id : </td><td><input name="put_id" type="number" [(ngModel)]="id"></td>
+            </tr>
+            <tr>
+              <td>Type : </td><td><input name="put_type" type="text" [(ngModel)]="type"></td>
+            </tr>
+            <tr>
+              <td>Name : </td><td><input name="put_name" type="text" [(ngModel)]="name"></td>
+            </tr>
+          </table>
+        </div>
+        <div class="col">
+          Permet de modifier un animal à la base de données.
+        </div>
+      </div>
+
+      <!-- ######################################## -->
+      <!--    Requête DELETE : DÉTRUIRE UN ANIMAL   -->
+      <!-- ######################################## -->
+      <div class="row delete align-items-center">
+        <div class="col-auto">
+          <button (click)="deleteAnimal()">DELETE</button>
+        </div>
+        <div class="col-auto">
+          <table>
+            <tr>
+              <td>Id : </td><td><input name="delete_id" type="number" [(ngModel)]="id"></td>
+            </tr>
+          </table>
+        </div>
+        <div class="col">
+          Permet de supprimer un animal spécifique dans la base de données.
+        </div>
+      </div>
+
+      <!-- ######################################## -->
+      <!--    Requête DELETE 2 : DÉTRUIRE LE ZOO    -->
+      <!-- ######################################## -->
+      <div class="row delete align-items-center">
+        <div class="col-auto">
+          <button class="delete2" (click)="deleteAll()">BUH-BYE</button>
+        </div>
+        <div class="col-auto">
+          <table>
+            <tr>
+              <td></td><td><input disabled name="delete_id" type="text" placeholder="Yamete kudasai 😩"></td>
+            </tr>
+          </table>
+        </div>
+        <div class="col">
+          « Nettoie » le zoo.
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+</main>
