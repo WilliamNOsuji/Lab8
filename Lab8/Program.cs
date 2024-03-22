@@ -1,10 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Lab8.Data;
+using Lab8.Models;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<Lab8Context>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Lab8Context") ?? throw new InvalidOperationException("Connection string 'Lab8Context' not found.")));
 
+builder.Services.AddScoped<AnimalService>();
 // Add services to the container.
 
 builder.Services.AddControllers();

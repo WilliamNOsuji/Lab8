@@ -14,29 +14,29 @@ namespace Lab8.Controllers
     [ApiController]
     public class AnimalsController : ControllerBase
     {
-        private readonly Lab8Context _context;
+        private readonly AnimalService _animalService;
 
-        public AnimalsController(Lab8Context context)
+        public AnimalsController(AnimalService animalService)
         {
-            _context = context;
+            _animalService = animalService;
         }
 
         // GET: api/Animals
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Animal>>> GetAnimal()
         {
-          if (_context.Animal == null)
+          if (_animalService == null)
           {
               return NotFound();
           }
-            return await _context.Animal.ToListAsync();
-        }
+            return await _animalService.GetAll();
+        }-------------------
 
         // GET: api/Animals/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Animal>> GetAnimal(int id)
         {
-          if (_context.Animal == null)
+          if (_animalService.GetAll() == null)
           {
               return NotFound();
           }
