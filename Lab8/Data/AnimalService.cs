@@ -4,11 +4,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Lab8.Data
 {
-    public class AnimalService
+    public class AnimalService : GenericService<Animal>
     {
         protected readonly Lab8Context _context;
 
-        public AnimalService(Lab8Context context)
+        public AnimalService(Lab8Context context) 
+            : base(context)
         {
             _context = context;
         }
@@ -70,6 +71,15 @@ namespace Lab8.Data
                 else throw;
             }
             return animal;
+        }
+
+        public async Task ClearAllAnimals()
+        {
+            if (IsContextNull()) return;
+
+            _context.Animal.RemoveRange(_context.Animal);
+
+            await _context.SaveChangesAsync();
         }
     }
 }

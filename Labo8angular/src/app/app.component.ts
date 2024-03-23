@@ -69,7 +69,8 @@ export class AppComponent {
   // Sussy function
   async deleteAll() : Promise<void>{
     // L
-    
+    let x = await lastValueFrom(this.http.post("https://localhost:7192/api/Animals/clear-all", null));
+    console.log("All animals deleted", x);
   }
 
 }
